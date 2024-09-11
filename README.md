@@ -24,22 +24,49 @@ Once your report is ready, publish it to your Power BI workspace.
 
 ## Enabling OneLake Integration
 Access Settings: In your Power BI workspace, click the three dots next to your semantic model and select "Settings."
+![semantic model setting](https://github.com/user-attachments/assets/b4cc1229-4483-4c9a-b4e7-c9ef24b54bfe)
+
 Enable OneLake Integration: Scroll down to find the "OneLake Integration" option. Enable it and apply the changes. This allows your semantic model to export tables as Delta tables in OneLake.
 Admin Portal Settings: In the Power BI Admin Portal, ensure the following settings are enabled under Integration Settings:
+
+![Admin Portal Settings](https://github.com/user-attachments/assets/e3bf0c58-cb31-4e66-8f20-ff5880f5dbb0)
+
 "Semantic model can export data to OneLake"
 "Users can store semantic model tables in OneLake"
 
 ## Exporting Tables to Delta Format
 Connect to your Power BI workspace using SQL Server Management Studio (SSMS) and execute an XMLA query to export your tables to Delta format. This will store your tables in OneLake, making them accessible for further analysis.
 
+{  
+ "export": {  
+   "layout": "delta",
+   "type": "full",  
+   "objects": [  
+     {  
+       "database": "<database name>"  
+     }  
+   ]  
+ }  
+}
+
+![OneLake Shortcut](https://github.com/user-attachments/assets/6be521c4-750d-4aa8-96b4-ddaf965f53d2)
+
+
 ## Creating Shortcuts in OneLake
 Access OneLake: Navigate to OneLake File Explorer and right-click to sync from OneLake.
 Create Shortcuts: Within your Lakehouse, create shortcuts to the exported Delta tables. You can select specific tables or import all tables from your semantic model.
 Automatic Data Synchronization
+
+![shortcut to sementic model](https://github.com/user-attachments/assets/febb8c83-b5c2-4747-b9dc-cf360c62b1c3)
+
+
 After creating shortcuts, any changes to your Power BI semantic model will be automatically reflected in OneLake. For example, if you add a new value to a manually created table in Power BI and publish the report, OneLake will automatically sync the changes.
 
 ## Use Cases and Applications
 OneLake shortcuts open up a wide range of possibilities, such as:
+
+![possibilities of shortcut](https://github.com/user-attachments/assets/e0768555-d0b8-4189-bc33-5a019669b204)
+
 
 Reusing data from large SQL Server tables already in your Power BI semantic model.
 Sharing DAX-calculated tables across your organization without recreating logic.
